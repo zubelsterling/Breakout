@@ -17,7 +17,6 @@ public class BrickSpawner : MonoBehaviour
     {
         brickObjPool = new BrickObjPool(brickObject);
         List<GameObject> resultRefs = new List<GameObject>();
-        int x, y;
         Vector3 location = new Vector3(0, 0, 0);
 
         for(int i = 0; i < height; i++)
