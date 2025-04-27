@@ -1,0 +1,56 @@
+{
+    "name": "Movement",
+    "maps": [
+        {
+            "name": "PlatformMovement",
+            "id": "4cd9db06-5a23-44ff-876b-65d454f32c52",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "f46bf858-61da-4f3e-be1b-86bd6c2590a7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "ArrowKeys",
+                    "id": "789a7d03-516d-4377-8be7-fcdd84baf700",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "568c7227-848b-4cfb-93ab-e462570daffd",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "216be188-e366-4510-9530-9946da7d3cec",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
