@@ -1,8 +1,8 @@
 {
-    "name": "Movement",
+    "name": "Move",
     "maps": [
         {
-            "name": "PlatformMovement",
+            "name": "Move",
             "id": "4cd9db06-5a23-44ff-876b-65d454f32c52",
             "actions": [
                 {
@@ -19,7 +19,7 @@
                 {
                     "name": "ArrowKeys",
                     "id": "789a7d03-516d-4377-8be7-fcdd84baf700",
-                    "path": "1DAxis",
+                    "path": "1DAxis(whichSideWins=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -28,7 +28,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
+                    "name": "Negative",
                     "id": "568c7227-848b-4cfb-93ab-e462570daffd",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
@@ -39,7 +39,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
+                    "name": "Positive",
                     "id": "216be188-e366-4510-9530-9946da7d3cec",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",

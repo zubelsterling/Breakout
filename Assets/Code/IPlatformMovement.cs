@@ -6,4 +6,5 @@ public interface IPlatformMovement
 {
     void moveLeft();
     void moveRight();
+    void stop();
 }

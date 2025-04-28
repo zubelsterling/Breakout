@@ -10,7 +10,7 @@ using UnityEngine;
 /// but will update position every frame as long as veloctiy is > 0
 /// </summary>
 
-public class PlatformMovement : MonoBehaviour
+public class PlatformMovement : MonoBehaviour, IPlatformMovement
 {
 
     private const float _velocityMax = 10;
