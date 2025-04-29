@@ -2,9 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum ConfigFileType
+{
+    CSV,
+    TXT,
+    JSON
+}
+
 public class BrickSpawner : MonoBehaviour
 {
     public IBrickObjPool brickObjPool; //attach which spawner to use
+    private BrickLayoutConfig config;
     public GameObject brickObject;
 
 
