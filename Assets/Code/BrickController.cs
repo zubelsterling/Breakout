@@ -9,6 +9,12 @@ interface IBrickController
 
 public class BrickController : MonoBehaviour, IBrickController
 {
+    AudioSystem audio;
+
+    private void Awake()
+    {
+        audio = AudioSystem.instance.getInstance();
+    }
 
     public void hit()
     {
