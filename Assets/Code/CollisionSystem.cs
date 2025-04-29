@@ -15,13 +15,19 @@ using UnityEngine;
 ///     and not the path along the way. I want to allow the player to change between classic and modern physics.
 /// </summary>
 
+struct CollisionData
+{
+    bool collisionDetected;
+    Vector2 landingLocation;
+}
+
 public class CollisionSystem : MonoBehaviour
 {
 
     //This class will only do the math, it will not run every loop. It is intended to be called.
 
 
-    public void checkCollision()
+    public void checkCollision(Vector2 target)
     {
 
     }

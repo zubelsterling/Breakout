@@ -9,16 +9,10 @@ public class BallMovement : MonoBehaviour
     private const int _LEFTLOC = -10;
     private const int _RIGHTLOC = 10;
 
-    private float _xVel = 0.1f;
-    private float _yVel = 0.1f;
+    private float _xVel = 0.05f;
+    private float _yVel = 0.05f;
 
     private bool shouldUpdate = true;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -39,5 +33,16 @@ public class BallMovement : MonoBehaviour
             this.transform.position = new Vector3(this.transform.position.x + _xVel, this.transform.position.y + _yVel, this.transform.position.z);
         }
         shouldUpdate = !shouldUpdate;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var brick = collision.gameObject.GetComponent<IBrickController>();
+        _yVel *= -1;
+        if (brick != null)
+        {
+            brick.hit();
+        }
+
     }
 }
