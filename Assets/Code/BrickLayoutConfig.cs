@@ -4,16 +4,40 @@ using UnityEngine;
 
 interface IConfigInterpreter
 {
-    string[][] getLayout();
+    List<List<string>> getLayout(int level);
 }
 
 public class BrickLayoutConfig: MonoBehaviour, IConfigInterpreter
 {
-    public TextAsset config;
+    public TextAsset[] configFiles;
+    private TextAsset currentConfig;
 
-    public string[][] getLayout()
+    public List<List<string>> getLayout(int level)
     {
-        string[][] result = { };
+        List<List<string>> result = new List<List<string>>();
+
+        int clampedLevel = level < configFiles.Length ? level : configFiles.Length - 1;
+
+        currentConfig = configFiles[level];// TODO clamp this value to prevent null reference
+
+        result.Add(new List<string>());
+
+        foreach(char c in currentConfig.text)
+        {
+            if(c == '\n')
+            {
+                result.Add(new List<string>());
+            }
+            if(c == ',')
+            {
+                //ignore commas
+            }
+            else
+            {
+                result[result.Count-1].Add(c.ToString());
+            }
+        }
+
         return result;
     }
 

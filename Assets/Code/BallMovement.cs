@@ -12,7 +12,10 @@ public class BallMovement : MonoBehaviour
     private float _xVel = 0.05f;
     private float _yVel = 0.05f;
 
-    private bool shouldUpdate = true;
+    private float newPosX = 0;
+    private float newPosY = 0;
+
+    public bool shouldUpdate;
 
     // Update is called once per frame
     void Update()
@@ -30,9 +33,11 @@ public class BallMovement : MonoBehaviour
                 _yVel *= -1;
             }
 
-            this.transform.position = new Vector3(this.transform.position.x + _xVel, this.transform.position.y + _yVel, this.transform.position.z);
+            newPosX = this.transform.position.x + (_xVel * Time.deltaTime);
+            newPosY = this.transform.position.y + (_yVel * Time.deltaTime);
+
+            this.transform.position = new Vector3(newPosX, newPosY, this.transform.position.z);
         }
-        shouldUpdate = !shouldUpdate;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

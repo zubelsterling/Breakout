@@ -12,35 +12,40 @@ enum ConfigFileType
 public class BrickSpawner : MonoBehaviour
 {
     public IBrickObjPool brickObjPool; //attach which spawner to use
-    private BrickLayoutConfig config;
+    private IConfigInterpreter config;
     public GameObject brickObject;
 
 
     void Start()
     {
-        spawnBricks(10, 5);
+        config = GetComponent<IConfigInterpreter>();
+        spawnBricks(config.getLayout(1));
     }
 
-    public List<GameObject> spawnBricks(int width, int height)
+    public List<GameObject> spawnBricks(List<List<string>> bricks)
     {
         brickObjPool = new BrickObjPool(brickObject);
         List<GameObject> resultRefs = new List<GameObject>();
         Vector3 location = new Vector3(0, 0, 0);
 
-        for(int i = 0; i < height; i++)
+        for(int i = 0; i < bricks.Count; i++)
         {
-            for(int j = 0; j < width; j++)
+            for(int j = 0; j < bricks[i].Count; j++)
             {
-                GameObject g = brickObjPool.pop();
+                if (bricks[i][j] != "0")
+                {
+                    GameObject g = brickObjPool.pop();
 
-               
-                g.transform.SetParent(transform);
 
-                location.x = this.transform.position.x + j;
-                location.y = this.transform.position.y - i;
+                    //could set what KIND of brick using numbers eg 2,3,4
+                    g.transform.SetParent(transform);
 
-                g.transform.position = location;
-                g.SetActive(true);
+                    location.x = this.transform.position.x + j;
+                    location.y = this.transform.position.y - i;
+
+                    g.transform.position = location;
+                    g.SetActive(true);
+                }
             }
         }
 

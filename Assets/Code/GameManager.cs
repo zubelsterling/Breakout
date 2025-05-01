@@ -7,12 +7,17 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     private PlayerController playerScriptRef;
 
-    //private int roundCount = 0;//might be good to just have if I want to display this.
+    private int roundCount = 0;
+
+    private void Awake()
+    {
+        playerScriptRef = player.GetComponent<PlayerController>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        playerScriptRef = player.GetComponent<PlayerController>();
+
     }
 
     // Update is called once per frame
