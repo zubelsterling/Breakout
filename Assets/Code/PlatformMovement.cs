@@ -13,23 +13,26 @@ using UnityEngine;
 public class PlatformMovement : MonoBehaviour, IPlatformMovement
 {
 
-    private const float _velocityMax = 10;
+    private const float _velocityMax = 20;
     private int direction = 0;
 
     private Vector3 _newLoc = new Vector3();
 
     public void moveLeft()
     {
-        direction = 1;
+        Debug.Log("left");
+        direction = -1;
     }
 
     public void moveRight()
     {
-        direction = -1;
+        Debug.Log("right");
+        direction = 1;
     }
 
     public void stop()
     {
+        Debug.Log("stop");
         direction = 0;
     }
 
@@ -43,7 +46,7 @@ public class PlatformMovement : MonoBehaviour, IPlatformMovement
     {
         if(direction != 0)
         {
-            _newLoc.x = this.transform.position.x + (_velocityMax * direction);
+            _newLoc.x = this.transform.position.x + (_velocityMax * direction) * Time.deltaTime;
             this.transform.position = _newLoc;
         }
     }

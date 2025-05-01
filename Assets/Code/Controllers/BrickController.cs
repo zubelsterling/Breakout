@@ -13,12 +13,11 @@ public class BrickController : MonoBehaviour, IBrickController
 
     private void Awake()
     {
-        audio = AudioSystem.instance.getInstance();
+        //audio = AudioSystem.instance.getInstance();
     }
 
     public void hit()
     {
-        Debug.Log("AH IVE BEEN HIT");
         this.gameObject.SetActive(false);
     }
 

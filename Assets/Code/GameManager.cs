@@ -5,12 +5,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
-    private Player playerScriptRef;
+    private PlayerController playerScriptRef;
+
+    //private int roundCount = 0;//might be good to just have if I want to display this.
 
     // Start is called before the first frame update
     void Start()
     {
-        playerScriptRef = player.GetComponent<Player>();
+        playerScriptRef = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
