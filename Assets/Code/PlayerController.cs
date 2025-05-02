@@ -6,9 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     //[SerializeField] private InputHandler _inputHandler;
 
-    public PlatformController platformController;
+    private PlatformController platformController;
     public GameObject platform;
-    public IPlatformMovement movement;
+    private IPlatformMovement movement;
     private InputHandler _inputHandler;
 
     delegate void moveLeft();
@@ -17,20 +17,11 @@ public class PlayerController : MonoBehaviour
     moveLeft movementLeft;
     moveRight movementRight;
 
-    // Start is called before the first frame update
     void Start()
     {
-        movement = platform.GetComponent<IPlatformMovement>();
-        platformController = new PlatformController(movement);
+        platformController = platform.GetComponent<PlatformController>();
         _inputHandler = InputHandler.instance;
-
-        movementLeft = movement.moveLeft;
-        movementRight = movement.moveRight;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 }

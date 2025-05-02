@@ -2,12 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IBrickController
-{
-    void hit();
-}
-
-public class BrickController : MonoBehaviour, IBrickController
+public class BrickController : MonoBehaviour, ICollisionHandler
 {
     AudioSystem audio;
 

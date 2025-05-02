@@ -4,50 +4,52 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-    private const int _TOPLOC = 5;
-    private const int _BOTTOMLOC = -5;
-    private const int _LEFTLOC = -10;
-    private const int _RIGHTLOC = 10;
 
-    private float _xVel = 0.05f;
-    private float _yVel = 0.05f;
+    private float _xVelBase = 5f;
+    private float _yVelBase = 5f;
+
+    private float _speedIncrease = 0;
+
+    //vector of either -1 or 1 but I suppose could be decimals for precise angles
+    private Vector2 _direction;
 
     private float newPosX = 0;
     private float newPosY = 0;
 
-    public bool shouldUpdate;
+    public bool shouldUpdate = false;
 
-    // Update is called once per frame
+    private void Awake()
+    {
+        //0,1 because in the base game, when you start the ball goes vertical
+        _direction = new Vector2(0, 1);
+    }
+
     void Update()
     {
+        
         if (shouldUpdate)
         {
 
-
-            if (this.transform.position.x < _LEFTLOC || this.transform.position.x > _RIGHTLOC)
-            {
-                _xVel *= -1;
-            }
-            if (this.transform.position.y > _TOPLOC || this.transform.position.y < _BOTTOMLOC)
-            {
-                _yVel *= -1;
-            }
-
-            newPosX = this.transform.position.x + (_xVel * Time.deltaTime);
-            newPosY = this.transform.position.y + (_yVel * Time.deltaTime);
+            newPosX = transform.position.x + ((_speedIncrease + _xVelBase) * Time.deltaTime)*_direction.x;
+            newPosY = transform.position.y + ((_speedIncrease + _yVelBase) * Time.deltaTime)*_direction.y;
 
             this.transform.position = new Vector3(newPosX, newPosY, this.transform.position.z);
         }
+        
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void addSpeed(float speed)
     {
-        var brick = collision.gameObject.GetComponent<IBrickController>();
-        _yVel *= -1;
-        if (brick != null)
-        {
-            brick.hit();
-        }
+        _speedIncrease += speed;
+    }
 
+    public void updateDirection(Vector2 direction)
+    {
+        _direction = direction;
+    }
+
+    public void shouldMove(bool shouldMove)
+    {
+        shouldUpdate = shouldMove;
     }
 }

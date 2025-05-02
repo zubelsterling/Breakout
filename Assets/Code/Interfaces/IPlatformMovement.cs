@@ -4,7 +4,5 @@ using UnityEngine;
 
 public interface IPlatformMovement
 {
-    void moveLeft();
-    void moveRight();
-    void stop();
+    void setDirection(float direction);
 }

@@ -3,44 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputHandler : MonoBehaviour
+public class InputHandler : Singleton<InputHandler>
 {
-    //singleton
-    public static InputHandler instance;
+
+    public delegate void ArrowKeysTrigger(float d);
+    public static ArrowKeysTrigger OnArrowKeyUpdate;
 
     //if left arrow or right arrow pressed
     private PlayerInput _input;
     private InputAction _action;
 
-    //public static event Input OnTriggered;
+    public float direction = 0f;
 
     private void Awake()
     {
+        //Debug.Log("asdasdasdad");
 
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+        //PlayerInput playerInput = new PlayerInput();
 
-        _input = GetComponent<PlayerInput>();
-        _action = _input.actions["Move"];
+        //_input = Resources.Load<PlayerInput>("Assets/Code/Input/Move");
+        //_action = _input.actions["Move"];
     }
 
     private void Update()
     {
-        Debug.Log(_action.ReadValue<float>());
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            direction = -1;
+        }else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            direction = 1;
+        }
+        else
+        {
+            direction = 0;
+        }
 
+        OnArrowKeyUpdate?.Invoke(direction);
 
-    }
+        //fix this later. Lets just get this working
+        //if (_action.WasPressedThisFrame())
+        //{
+        //    Debug.Log("Is this working");
+        //    OnArrowKeysTrigger?.Invoke();
+        //}
+        //Debug.Log(_action.ReadValue<float>());
 
-    public void OnParticleTrigger()
-    {
-        
+        //direction = _action.ReadValue<float>();
     }
 }
 

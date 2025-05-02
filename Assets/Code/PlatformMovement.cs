@@ -14,32 +14,21 @@ public class PlatformMovement : MonoBehaviour, IPlatformMovement
 {
 
     private const float _velocityMax = 20;
-    private int direction = 0;
+    private float direction = 0;
 
     private Vector3 _newLoc = new Vector3();
-
-    public void moveLeft()
-    {
-        Debug.Log("left");
-        direction = -1;
-    }
-
-    public void moveRight()
-    {
-        Debug.Log("right");
-        direction = 1;
-    }
-
-    public void stop()
-    {
-        Debug.Log("stop");
-        direction = 0;
-    }
 
     void Start()
     {
         _newLoc.y = this.transform.position.y;
         _newLoc.x = 0;
+
+        InputHandler.OnArrowKeyUpdate += setDirection;
+    }
+
+    public void setDirection(float d)
+    {
+        direction = d;
     }
 
     void Update()
