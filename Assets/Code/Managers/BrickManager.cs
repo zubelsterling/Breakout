@@ -12,12 +12,13 @@ using UnityEngine;
 
 public class BrickManager : MonoBehaviour
 {
+
     private List<List<GameObject>> _bricks;
     private List<List<string>> _layout;
     private int _activeBrickCount;
 
     public GameObject spawnPoint;
-    public int brickGridWidth;
+    public int brickGridWidth;//move to settings
     public int brickGridHeight;
     public GameObject brickPrefab;
 
@@ -26,7 +27,8 @@ public class BrickManager : MonoBehaviour
 
     private void Awake()
     {
-        GameEvents.loadLevel += loadLevel;
+        GameManagerEvents.loadLevel += loadLevel;
+        BrickEvents.brickHit += decreaseActiveBrickCount;
     }
 
     void Start()
@@ -71,7 +73,7 @@ public class BrickManager : MonoBehaviour
         _activeBrickCount--;
         if(_activeBrickCount < 1)
         {
-            GameEvents.levelComplete?.Invoke();
+            GameManagerEvents.levelComplete?.Invoke();
         }
     }
 

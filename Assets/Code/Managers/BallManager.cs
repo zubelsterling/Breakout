@@ -12,9 +12,6 @@ public class BallManager : MonoBehaviour
 {
     public GameObject ballPrefab;
 
-    public delegate void BallOffScreen();
-    public static BallOffScreen ballOffScreen;
-
     private BallObjPool pool;
 
     private List<GameObject> _activeBalls;
@@ -23,20 +20,27 @@ public class BallManager : MonoBehaviour
     {
         _activeBalls = new List<GameObject>();
         pool = new BallObjPool(ballPrefab);
-        ballOffScreen += offScreen;
+        eventSubscriptions();
+
         newBall();
     }
 
-    public void newBall()
+    private void eventSubscriptions()
+    {
+        BallEvents.ballOffScreen += offScreen;
+        BallEvents.spawnExtraBall += spawnExtraBall;
+    }
+
+    private GameObject newBall()
     {
         GameObject ball = pool.getBall();
         ball.transform.position = ballSpawnLocation();
         ball.SetActive(true);
         _activeBalls.Add(ball);
-
+        return ball;
     }
 
-    public void offScreen()
+    private void offScreen()
     {
         int i = 0;
         while(i < _activeBalls.Count) 
@@ -52,6 +56,11 @@ public class BallManager : MonoBehaviour
         {
             newBall();
         }
+    }
+
+    private void spawnExtraBall()
+    {
+        newBall().GetComponent<BallController>().enableMovement();
     }
 
     private Vector3 ballSpawnLocation()

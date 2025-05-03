@@ -11,33 +11,25 @@ public class GameManager : MonoBehaviour
 {
     private int roundCount = 0;
 
+    public GameObject boundingBox;
+
     private void Awake()
     {
-        GameEvents.levelComplete += advanceLevel;
+        Settings.instance.gameWidth = boundingBox.GetComponent<SpriteRenderer>().bounds.size.x; 
+        Settings.instance.gameHeight = boundingBox.GetComponent<SpriteRenderer>().bounds.size.y; 
+        GameManagerEvents.levelComplete += advanceLevel;
         InputHandler input = InputHandler.instance;//start monobehavior methods
     }
 
     private void Start()
     {
-        GameEvents.loadLevel?.Invoke(roundCount);
+        GameManagerEvents.loadLevel?.Invoke(roundCount);
     }
 
     private void advanceLevel()
     {
         roundCount++;
-        GameEvents.loadLevel?.Invoke(roundCount);
+        GameManagerEvents.loadLevel?.Invoke(roundCount);
     }
 
-}
-
-/// <summary>
-/// some game events that any class can subscribe to
-/// </summary>
-public static class GameEvents
-{
-    public delegate void LoadLevel(int levelNum);
-    public delegate void LevelComplete();
-
-    public static LoadLevel loadLevel;
-    public static LevelComplete levelComplete;
 }

@@ -8,7 +8,8 @@ using UnityEngine;
 
 public class Settings : Singleton<Settings>
 {
-    public const int WIDTH = 10;
-    public const int HEIGHT = 10;
+    public float gameWidth { get; set; }
+    public float gameHeight { get; set; }
+    public float powerUpOdds { get; set; }
 
 }

@@ -30,6 +30,7 @@ public class BrickSpawner
                 currentBrick.SetActive(false);
                 location.x += brick.GetComponent<Renderer>().bounds.size.x;
                 currentBrick.transform.position = location;
+                currentBrick.GetComponent<BrickController>().setColor(i);
                 resultRefs[i].Add(currentBrick);
             }
         }

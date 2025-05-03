@@ -13,10 +13,7 @@ public class BallController : MonoBehaviour
     private BallCollisionBehavior collisionBehavior;
     private Vector2 currentLocation;
 
-    private bool ballMove;//hook this up later
-
-    delegate void ChangeDirection(Vector2 direction);
-    ChangeDirection changeDirection;
+    private bool ballMove;
 
     private void OnEnable()
     {
@@ -47,7 +44,7 @@ public class BallController : MonoBehaviour
 
     }
 
-    private void enableMovement()
+    public void enableMovement()
     {
         ballMove = true;
         //stop listening to enable
@@ -56,18 +53,18 @@ public class BallController : MonoBehaviour
 
     private void handleBounds()
     {
-        if (transform.position.x > 10 || transform.position.x < -10)
+        if (transform.position.x > Settings.instance.gameWidth/2 || transform.position.x < (Settings.instance.gameWidth/2) * -1)
         {
             movement.flipXDirection();
         }
-        if (transform.position.y > 5)
+        if (transform.position.y > Settings.instance.gameHeight/2)
         {
             movement.flipYDirection();
         }
 
-        if (transform.position.y < -6)
+        if (transform.position.y < (Settings.instance.gameHeight / 2) * -1)
         {
-            BallManager.ballOffScreen?.Invoke();
+            BallEvents.ballOffScreen?.Invoke();
         }
     }
 
@@ -80,7 +77,6 @@ public class BallController : MonoBehaviour
         }
         if(collision.gameObject.GetComponent<IPlatformController>() != null)
         {
-            Debug.Log("platformhit");
             movement.UpdateDirection(collisionBehavior.platformBounce(gameObject, collision.gameObject));
         }
     }
