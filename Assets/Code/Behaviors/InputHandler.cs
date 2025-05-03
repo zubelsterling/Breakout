@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class InputHandler : Singleton<InputHandler>
 {
 
-    public delegate void ArrowKeysTrigger(float d);
+    public delegate void ArrowKeysTrigger(int d);
     public static ArrowKeysTrigger OnArrowKeyUpdate;
 
     public delegate void SpacePressed();
@@ -16,12 +16,7 @@ public class InputHandler : Singleton<InputHandler>
     private PlayerInput _input;
     private InputAction _action;
 
-    public float direction = 0f;
-
-    private void Awake()
-    {
-
-    }
+    public float direction = 0;
 
     private void Update()
     {

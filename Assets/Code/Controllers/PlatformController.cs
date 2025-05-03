@@ -3,19 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlatformController: MonoBehaviour
+public class PlatformController : MonoBehaviour, IPlatformController
 {
-    private IPlatformMovement mover;
+    //subscribe to input
+    private int _direction = 0;
+    private PlatformMovement _movement;
 
     private void Awake()
     {
-        mover = GetComponent<IPlatformMovement>();
-    }
-    
-    public void setDirection(float d)
-    {
-        mover.setDirection(d);
+        _movement = new PlatformMovement();
+        InputHandler.OnArrowKeyUpdate += updateDirection; 
     }
 
+    private void Update()
+    {
+        if (_direction != 0)
+        {
+            transform.position = new Vector3(_movement.updatePosition(_direction, transform.position.x), transform.position.y, 0);
+        }
+    }
+
+    private void updateDirection(int direction)
+    {
+        _direction = direction;
+    }
 }
 

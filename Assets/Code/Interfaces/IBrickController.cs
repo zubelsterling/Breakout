@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBrickObjPool
+public interface IBrickController 
 {
-    GameObject pop();
-    void add(GameObject g);
+    void hit();
 }

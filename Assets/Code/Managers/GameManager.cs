@@ -9,15 +9,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject player;
-    private PlayerController playerScriptRef;
-
     private int roundCount = 0;
 
     private void Awake()
     {
-        playerScriptRef = player.GetComponent<PlayerController>();
         GameEvents.levelComplete += advanceLevel;
+        InputHandler input = InputHandler.instance;//start monobehavior methods
     }
 
     private void Start()

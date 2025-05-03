@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Ball manager is meant to be placed in the scene to manage 1 or many balls.
 /// 
-/// Should ensure 1 balls is onscreen at all times.
+/// Should ensure 1 ball is onscreen at all times.
 /// </summary>
 
 public class BallManager : MonoBehaviour
