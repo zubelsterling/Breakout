@@ -14,7 +14,7 @@ public class PowerUpController : MonoBehaviour
     float fallVelocity = 5f;
     Vector3 newPosition;
 
-    private void Start()
+    private void OnEnable()
     {
         newPosition = transform.position;
     }
@@ -23,6 +23,10 @@ public class PowerUpController : MonoBehaviour
     {
         newPosition.y -= fallVelocity * Time.deltaTime;
         transform.position = newPosition;
+        if(transform.position.y < (Settings.instance.gameHeight / 2) * -1)
+        {
+            PowerUpEvents.powerUpRecycle(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,7 +35,7 @@ public class PowerUpController : MonoBehaviour
         {
             AudioEvents.powerUpCollectSound?.Invoke();
             PowerUpEvents.executePowerUp?.Invoke(powerUpType);
-            gameObject.SetActive(false);
+            PowerUpEvents.powerUpRecycle?.Invoke(gameObject);
         }
     }
 }

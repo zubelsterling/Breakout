@@ -7,6 +7,9 @@ public class PowerUpEvents
     public delegate void PowerUpSpawn(EPowerUpType type, Vector2 location);
     public static PowerUpSpawn powerUpSpawn;
 
+    public delegate void PowerUpRecycle(GameObject powerup);
+    public static PowerUpRecycle powerUpRecycle;
+
     public delegate void ExecutePowerUp(EPowerUpType type);
     public static ExecutePowerUp executePowerUp;
 }

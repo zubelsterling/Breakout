@@ -758,6 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 793267037228169228, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
+  maxNumBalls: 10
 --- !u!1 &1723610299
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,6 +932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraBallPrefab: {fileID: 2641575217690784416, guid: c15bf798429cd114b8da6d5d4bf3625d, type: 3}
+  poolSize: 10
 --- !u!4 &1857822951
 Transform:
   m_ObjectHideFlags: 0
@@ -979,7 +981,7 @@ MonoBehaviour:
   rowCount: 7
   columnCount: 20
   startingLevelOffset: 0
-  powerUpChance: 0.1
+  powerUpChance: 0.539
 --- !u!4 &1890204450
 Transform:
   m_ObjectHideFlags: 0

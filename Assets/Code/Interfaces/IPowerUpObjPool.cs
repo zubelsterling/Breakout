@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IPowerUpObjPool : MonoBehaviour
+public interface IPowerUpObjPool
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    GameObject pop();
+    void returnToPool(GameObject powerUp);
+    void fillPool(int size, GameObject g);
 }

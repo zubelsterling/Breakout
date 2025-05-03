@@ -20,7 +20,7 @@ public class BallController : MonoBehaviour
         movement = new BallMovement();
         collisionBehavior = new BallCollisionBehavior();
         currentLocation = new Vector2(transform.position.x, transform.position.y);
-        movement.UpdateDirection(new Vector2(1,1));
+        movement.UpdateDirection(randomStartDirection());
         InputHandler.spacePressed += enableMovement;
         ballMove = false;
     }
@@ -49,6 +49,8 @@ public class BallController : MonoBehaviour
         ballMove = true;
         //stop listening to enable
         InputHandler.spacePressed -= enableMovement;
+
+        movement.UpdateDirection(randomStartDirection());
     }
 
     private void handleBounds()
@@ -57,7 +59,7 @@ public class BallController : MonoBehaviour
         {
             movement.flipXDirection();
         }
-        if (transform.position.y > Settings.instance.gameHeight/2)
+        if (transform.position.y > Settings.instance.gameHeight/2 && movement.getDirection().y > 0)
         {
             movement.flipYDirection();
         }
@@ -70,7 +72,8 @@ public class BallController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<IBrickController>() != null)//check if collision is with a brick
+        //brick Collision
+        if(collision.gameObject.GetComponent<IBrickController>() != null)
         {
             if(collisionBehavior.simpleBounce(gameObject, collision.gameObject).y < 0)
             {
@@ -81,11 +84,25 @@ public class BallController : MonoBehaviour
             }
             
             collision.gameObject.GetComponent<IBrickController>().hit();
+
         }
+        //platform Collision
         if(collision.gameObject.GetComponent<IPlatformController>() != null)
         {
             AudioEvents.platformBounceSound?.Invoke();
             movement.UpdateDirection(collisionBehavior.platformBounce(gameObject, collision.gameObject));
         }
+    }
+
+    private Vector2 randomStartDirection()
+    {
+        //random angle
+        float x = Random.Range(100, 150) / 100;
+        float y = 2 - Mathf.Abs(x);
+
+        //random direction
+        x *= Random.Range(0, 1) == 1 ? 1 : -1;
+
+        return new Vector2(x, y);
     }
 }

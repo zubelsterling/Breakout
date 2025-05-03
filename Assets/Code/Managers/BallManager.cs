@@ -16,6 +16,9 @@ public class BallManager : MonoBehaviour
 
     private List<GameObject> _activeBalls;
 
+    [Range(5, 15)]
+    public int maxNumBalls;
+
     private void Start()
     {
         _activeBalls = new List<GameObject>();
@@ -33,11 +36,16 @@ public class BallManager : MonoBehaviour
 
     private GameObject newBall()
     {
-        GameObject ball = pool.getBall();
-        ball.transform.position = ballSpawnLocation();
-        ball.SetActive(true);
-        _activeBalls.Add(ball);
-        return ball;
+        if(_activeBalls.Count < maxNumBalls)
+        {
+            GameObject ball = pool.getBall();
+            ball.transform.position = ballSpawnLocation();
+            ball.SetActive(true);
+            _activeBalls.Add(ball);
+            return ball;
+
+        }
+        return null;
     }
 
     private void offScreen()
@@ -60,7 +68,7 @@ public class BallManager : MonoBehaviour
 
     private void spawnExtraBall()
     {
-        newBall().GetComponent<BallController>().enableMovement();
+        newBall()?.GetComponent<BallController>().enableMovement();
     }
 
     private Vector3 ballSpawnLocation()

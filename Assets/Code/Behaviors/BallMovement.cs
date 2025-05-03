@@ -28,4 +28,9 @@ public class BallMovement
 
         return newLoc;
     }
+
+    public Vector2 getDirection()
+    {
+        return _direction;
+    }
 }

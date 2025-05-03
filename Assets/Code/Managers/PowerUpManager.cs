@@ -12,9 +12,15 @@ public class PowerUpManager : MonoBehaviour
 {
 
     public GameObject extraBallPrefab;
+    [Range (1, 20)]
+    public int poolSize;
+
+    private IPowerUpObjPool _powerUpPool;
 
     private void Start()
     {
+        _powerUpPool = new PowerUpObjPool();
+        _powerUpPool.fillPool(poolSize, extraBallPrefab);
         subscribeToEvents();
     }
 
@@ -22,17 +28,22 @@ public class PowerUpManager : MonoBehaviour
     {
         PowerUpEvents.powerUpSpawn += spawnPowerUp;
         PowerUpEvents.executePowerUp += powerUpCollected;
+        PowerUpEvents.powerUpRecycle += _powerUpPool.returnToPool;
     }
 
     private void spawnPowerUp(EPowerUpType type, Vector2 location)
     {
-        GameObject g = Instantiate(extraBallPrefab);
-        g.transform.position = location;
+        GameObject g = _powerUpPool.pop();
+        if (g != null)
+        {
+            g.transform.position = location;
+            g.SetActive(true);
+        }
     }
 
     private void powerUpCollected(EPowerUpType type)
     {
-        //polymorphism can solve long if/else switch cases if this got too lengthy. 1 or 2 powerups are fine.
+        //delegate here if I had more than 1 powerup
         if(type == EPowerUpType.EXTRABALL)
         {
             BallEvents.spawnExtraBall?.Invoke();
