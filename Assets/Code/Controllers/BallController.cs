@@ -81,7 +81,7 @@ public class BallController : MonoBehaviour
         if(collision.gameObject.GetComponent<IPlatformController>() != null)
         {
             Debug.Log("platformhit");
-            movement.ReflectDirection(collisionBehavior.platformBounce(gameObject, collision.gameObject));
+            movement.UpdateDirection(collisionBehavior.platformBounce(gameObject, collision.gameObject));
         }
     }
 }

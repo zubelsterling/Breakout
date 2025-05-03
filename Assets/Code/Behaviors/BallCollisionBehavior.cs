@@ -43,7 +43,33 @@ public class BallCollisionBehavior
     //          based on the dinstance from the center point of the platform.
     public Vector2 platformBounce(GameObject ball, GameObject target)
     {
-        
-        return new Vector2(0, 0);
+        //based on x distance from the center of the platform, set launch angle.
+        float low = 0.15f;
+        float med = 0.45f;
+        float high = 0.85f;
+        int xDirection = 0;
+
+        float resultX = 0;
+        float resultY = 0;
+
+        xDirection = ball.transform.position.x < target.transform.position.x ? -1 : 1;
+
+        float calculatedDistance = (Mathf.Abs(ball.transform.position.x) - Mathf.Abs(target.transform.position.x)) / target.GetComponent<Renderer>().bounds.size.x;
+
+        if ( calculatedDistance < 0.3f)
+        {
+            resultX = low;
+        }
+        else if(calculatedDistance < 0.6f)
+        {
+            resultX = med;
+        }
+        else
+        {
+            resultX = high;
+        }
+        resultY = 0.9f - resultX;
+
+        return new Vector2(resultX * xDirection, resultY);
     }
 }
