@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrickController : MonoBehaviour, ICollisionHandler
+public class BrickController : MonoBehaviour
 {
-    AudioSystem audio;
+    //AudioSystem audio;
 
     private void Awake()
     {

@@ -24,7 +24,7 @@ public class BrickSpawner : MonoBehaviour
 
     public List<GameObject> spawnBricks(List<List<string>> bricks)
     {
-        brickObjPool = new BrickObjPool(brickObject);
+        brickObjPool = ScriptableObject.CreateInstance<BrickObjPool>();
         List<GameObject> resultRefs = new List<GameObject>();
         Vector3 location = new Vector3(0, 0, 0);
 

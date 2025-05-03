@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallMovement : MonoBehaviour
+public class BallMovement
 {
 
     private float _xVelBase = 5f;
@@ -10,46 +10,18 @@ public class BallMovement : MonoBehaviour
 
     private float _speedIncrease = 0;
 
-    //vector of either -1 or 1 but I suppose could be decimals for precise angles
     private Vector2 _direction;
 
-    private float newPosX = 0;
-    private float newPosY = 0;
+    public void addSpeed(float speed) => _speedIncrease += speed;
+    public void UpdateDirection(Vector2 direction) => _direction = direction;
 
-    public bool shouldUpdate = false;
-
-    private void Awake()
+    public Vector2 updateLocation(Vector2 currentLoc)
     {
-        //0,1 because in the base game, when you start the ball goes vertical
-        _direction = new Vector2(0, 1);
-    }
+        Vector2 newLoc = currentLoc;
 
-    void Update()
-    {
-        
-        if (shouldUpdate)
-        {
+        newLoc.x = currentLoc.x + ((_speedIncrease + _xVelBase) * Time.deltaTime)*_direction.x;
+        newLoc.y = currentLoc.y + ((_speedIncrease + _yVelBase) * Time.deltaTime)*_direction.y;
 
-            newPosX = transform.position.x + ((_speedIncrease + _xVelBase) * Time.deltaTime)*_direction.x;
-            newPosY = transform.position.y + ((_speedIncrease + _yVelBase) * Time.deltaTime)*_direction.y;
-
-            this.transform.position = new Vector3(newPosX, newPosY, this.transform.position.z);
-        }
-        
-    }
-
-    public void addSpeed(float speed)
-    {
-        _speedIncrease += speed;
-    }
-
-    public void updateDirection(Vector2 direction)
-    {
-        _direction = direction;
-    }
-
-    public void shouldMove(bool shouldMove)
-    {
-        shouldUpdate = shouldMove;
+        return newLoc;
     }
 }
