@@ -32,3 +32,6 @@ The game breakout from scratch!
 ### Initial pass on class diagram
 ![image](https://github.com/user-attachments/assets/beccae63-e9fe-4821-8cea-2d07750153d6)
 
+### In the base game, the platform has 6 distinct launch angles.
+ - with that said, here is my interpretation of potential launch angles for the ball via drawing
+![image](https://github.com/user-attachments/assets/576fdef3-d0e6-49a6-9618-aa852b0f200a)
