@@ -835,7 +835,7 @@ MonoBehaviour:
   boundingBox: {fileID: 1344230863}
   rowCount: 7
   columnCount: 20
-  startingLevel: 1
+  startingLevelOffset: 0
 --- !u!4 &1890204450
 Transform:
   m_ObjectHideFlags: 0

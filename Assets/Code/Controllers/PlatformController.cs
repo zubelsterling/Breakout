@@ -17,7 +17,7 @@ public class PlatformController : MonoBehaviour, IPlatformController
 
     private void Update()
     {
-        if (_direction != 0)
+        if (_direction != 0 && checkBounds())
         {
             transform.position = new Vector3(_movement.updatePosition(_direction, transform.position.x), transform.position.y, 0);
         }
@@ -26,6 +26,14 @@ public class PlatformController : MonoBehaviour, IPlatformController
     private void updateDirection(int direction)
     {
         _direction = direction;
+    }
+    private bool checkBounds()
+    {
+        if (_direction < 0 && transform.position.x < (Settings.instance.gameWidth * -1) / 2)
+            return false;
+        if (_direction > 0 && transform.position.x > Settings.instance.gameWidth / 2)
+            return false;
+        return true;
     }
 }
 
