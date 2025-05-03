@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IConfigInterpreter
-{
-    List<List<string>> getLayout(int level);
-}
-
-public class BrickLayoutConfig: MonoBehaviour, IConfigInterpreter
+public class BrickLayoutConfig : MonoBehaviour
 {
     public TextAsset[] configFiles;
     private TextAsset currentConfig;
+
+    private void Awake()
+    {
+        //subscribe to load level
+    }
 
     public List<List<string>> getLayout(int level)
     {
