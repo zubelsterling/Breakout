@@ -198,8 +198,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 2096974016}
-  brickGridWidth: 20
-  brickGridHeight: 8
   brickPrefab: {fileID: 7401991579853807925, guid: 4da0a4ef77f186344baa435faafdbffc, type: 3}
   levels:
   - {fileID: 4900000, guid: 39737fe543019d14c975d56acd153786, type: 3}
@@ -834,6 +832,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5461228e63f6d2e45ac0bac25a032991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boundingBox: {fileID: 1344230863}
+  rowCount: 7
+  columnCount: 20
+  startingLevel: 1
 --- !u!4 &1890204450
 Transform:
   m_ObjectHideFlags: 0

@@ -16,7 +16,6 @@ public class PowerUpManager : MonoBehaviour
     private void Start()
     {
         subscribeToEvents();
-
     }
 
     private void subscribeToEvents()

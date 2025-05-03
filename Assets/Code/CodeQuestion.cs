@@ -15,35 +15,36 @@ public class CodeQuestion : MonoBehaviour
     // -convert int to binary
     // -reverse binary
     // -binary to int
-    public static int FormatNumber1(int number)
+    public static int FormatNumber(int number)
     {
         var binaryRep = string.Empty;
         var result = 0;
+
         while (number > 0)
         {
-            binaryRep = (number % 10) + binaryRep;
-            number = number / 10;
+            binaryRep = (number % 2) + binaryRep;
+            number = number / 2;
         }
-        int base1 = 2;
+
+
         int len = binaryRep.Length;
+
         for (int i = 0; i < len; i++)
         {
             if (binaryRep[i] == '1')
-                result += base1;
-            base1 = base1 * 10;
+                result += (int)Math.Pow(2, i);
         }
         return result;
     }
 
     //alternative solution using Convert.ToString
-    public static int FormatNumber(int number)
+    public static int FormatNumberAlternate(int number)
     {
         var binaryRep = string.Empty;
         int result = 0;
 
         binaryRep = Convert.ToString(number, 2);
 
-        Console.WriteLine(binaryRep);
         int len = binaryRep.Length;
 
         for (int i = 0; i < len; i++)

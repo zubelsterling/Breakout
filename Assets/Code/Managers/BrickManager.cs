@@ -18,8 +18,6 @@ public class BrickManager : MonoBehaviour
     private int _activeBrickCount;
 
     public GameObject spawnPoint;
-    public int brickGridWidth;//move to settings
-    public int brickGridHeight;
     public GameObject brickPrefab;
 
     public TextAsset[] levels;
@@ -33,7 +31,7 @@ public class BrickManager : MonoBehaviour
 
     void Start()
     {
-        _bricks = BrickSpawner.spawnBricks(brickGridHeight, brickGridWidth, brickPrefab, spawnPoint.transform.position);
+        _bricks = BrickSpawner.spawnBricks(brickPrefab, spawnPoint.transform.position);
 
     }
 
@@ -41,20 +39,23 @@ public class BrickManager : MonoBehaviour
     {
         _activeBrickCount = 0;
 
-        //use whichever width/height that is smallest
-        int width = layout.Count < _bricks.Count ? layout.Count : _bricks.Count;
-        int height = layout[0].Count < _bricks[0].Count ? layout[0].Count : _bricks[0].Count;
+        //replace this with settings
+        int width = Settings.instance.brickGridWidth;
+        int height = Settings.instance.brickGridHeight;
 
-        for (int i = 0; i < _bricks.Count; i++)
+        for (int i = 0; i < height; i++)
         {
-            for(int j = 0; j < _bricks[i].Count; j++)
+            for(int j = 0; j < width; j++)
             {
-
-                if (shouldActiveateBrick(layout[i][j]))
+                if(layout[i][j] != null)
                 {
-                    _activeBrickCount++;
-                    _bricks[i][j].SetActive(true);
+                    if (shouldActiveateBrick(layout[i][j]))
+                    {
+                        _activeBrickCount++;
+                        _bricks[i][j].SetActive(true);
+                    }
                 }
+
             }
         }
     }
@@ -79,7 +80,9 @@ public class BrickManager : MonoBehaviour
 
     private void loadLevel(int level)
     {
-        _layout = BrickLayoutConfig.getLayout(levels[level]);
+        //clamp level to fit into array and allow for an offset if it exists
+        int adjustedLevelNum = (level + Settings.instance.startLevel) % levels.Length;
+        _layout = BrickLayoutConfig.getLayout(levels[adjustedLevelNum]);
         updateBrickLayout(_layout);
     }
 }

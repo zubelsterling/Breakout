@@ -5,18 +5,22 @@ using UnityEngine;
 /// <summary>
 /// High level orchestration of the game
 ///
+/// setup settings and orchestrate game events
 /// </summary>
 
 public class GameManager : MonoBehaviour
 {
-    private int roundCount = 0;
-
     public GameObject boundingBox;
+    public int rowCount;
+    public int columnCount;
+
+    public int startingLevelOffset = 0;
+
+    private int roundCount = 0;
 
     private void Awake()
     {
-        Settings.instance.gameWidth = boundingBox.GetComponent<SpriteRenderer>().bounds.size.x; 
-        Settings.instance.gameHeight = boundingBox.GetComponent<SpriteRenderer>().bounds.size.y; 
+        setupSettings();
         GameManagerEvents.levelComplete += advanceLevel;
         InputHandler input = InputHandler.instance;//start monobehavior methods
     }
@@ -30,6 +34,15 @@ public class GameManager : MonoBehaviour
     {
         roundCount++;
         GameManagerEvents.loadLevel?.Invoke(roundCount);
+    }
+
+    private void setupSettings()
+    {
+        Settings.instance.gameWidth = boundingBox.GetComponent<SpriteRenderer>().bounds.size.x;
+        Settings.instance.gameHeight = boundingBox.GetComponent<SpriteRenderer>().bounds.size.y;
+        Settings.instance.brickGridWidth = columnCount;
+        Settings.instance.brickGridHeight = rowCount;
+        Settings.instance.startLevel = startingLevelOffset;
     }
 
 }

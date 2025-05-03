@@ -12,11 +12,13 @@ using UnityEngine;
 public class BrickSpawner
 {
     //only run once, don't destroy bricks since enable/disable is way cheaper
-    public static  List<List<GameObject>> spawnBricks(int height, int width, GameObject brick, Vector3 startLoc)
+    public static  List<List<GameObject>> spawnBricks(GameObject brick, Vector3 startLoc)
     {
         List<List<GameObject>> resultRefs = new List<List<GameObject>>();
         Vector3 location = startLoc;
         GameObject currentBrick;
+        int height = Settings.instance.brickGridHeight;
+        int width = Settings.instance.brickGridWidth;
 
         for(int i = 0; i < height; i++)
         {

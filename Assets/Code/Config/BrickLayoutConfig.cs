@@ -10,23 +10,25 @@ public class BrickLayoutConfig
         List<List<string>> result = new List<List<string>>();
 
         result.Add(new List<string>());
+        result[0].Add("0");
 
         foreach(char c in config.text)
         {
             if(c == '\n')
             {
                 result.Add(new List<string>());
+                result[result.Count - 1].Add("0");
             }
-            if(c == ',')
+            else if(c == ',')
             {
-                //ignore commas
+                result[result.Count - 1].Add("0");
             }
-            else
+            else if(c == '1')
             {
-                result[result.Count-1].Add(c.ToString());
+                result[result.Count - 1][result[result.Count - 1].Count - 1] = "1";
             }
-        }
 
+        }
         return result;
     }
 
