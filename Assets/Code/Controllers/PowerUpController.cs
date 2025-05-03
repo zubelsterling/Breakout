@@ -29,7 +29,7 @@ public class PowerUpController : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<IPlatformController>() != null)
         {
-            Debug.Log("platform");
+            AudioEvents.powerUpCollectSound?.Invoke();
             PowerUpEvents.executePowerUp?.Invoke(powerUpType);
             gameObject.SetActive(false);
         }

@@ -72,11 +72,19 @@ public class BallController : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<IBrickController>() != null)//check if collision is with a brick
         {
-            movement.ReflectDirection(collisionBehavior.simpleBounce(gameObject, collision.gameObject));
+            if(collisionBehavior.simpleBounce(gameObject, collision.gameObject).y < 0)
+            {
+                movement.flipYDirection();
+            }
+            else{
+                movement.flipXDirection();
+            }
+            
             collision.gameObject.GetComponent<IBrickController>().hit();
         }
         if(collision.gameObject.GetComponent<IPlatformController>() != null)
         {
+            AudioEvents.platformBounceSound?.Invoke();
             movement.UpdateDirection(collisionBehavior.platformBounce(gameObject, collision.gameObject));
         }
     }

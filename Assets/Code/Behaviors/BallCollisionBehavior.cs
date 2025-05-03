@@ -18,20 +18,20 @@ public class BallCollisionBehavior
         Vector2 ballPosition = ball.transform.position;
         Vector2 targetPosition = target.transform.position;
 
-        Vector2 difference = ballPosition - targetPosition;
-        float dx = Mathf.Abs(difference.x);
-        float dy = Mathf.Abs(difference.y);
+        float targetHeight = target.GetComponent<Renderer>().bounds.size.y/2;
 
-        float x = 1;
-        float y = 1;
 
-        if(dx > dy)
+        int x = 1;
+        int y = 1;
+        
+        //top or bottom hit
+        if(ballPosition.y < targetPosition.y - targetHeight || ballPosition.y > targetPosition.y + targetHeight)
         {
-            x = (difference.x > 0) ? 1 : -1;
+            y = -1;
         }
-        else
+        else//side hit
         {
-            y = (difference.y > 0) ? 1 : -1;
+            x = -1;
         }
 
         return new Vector2(x, y);
@@ -44,9 +44,9 @@ public class BallCollisionBehavior
     public Vector2 platformBounce(GameObject ball, GameObject target)
     {
         //based on x distance from the center of the platform, set launch angle.
-        float low = 0.15f;
-        float med = 0.45f;
-        float high = 0.85f;
+        float low = 0.25f;
+        float med = 0.5f;
+        float high = 1f;
         int xDirection = 0;
 
         float resultX = 0;
@@ -68,7 +68,7 @@ public class BallCollisionBehavior
         {
             resultX = high;
         }
-        resultY = 0.9f - resultX;
+        resultY =  2f - resultX;
 
         return new Vector2(resultX * xDirection, resultY);
     }

@@ -14,9 +14,8 @@ public class BallMovement
 
     public void addSpeed(float speed) => _speedIncrease += speed;
     public void UpdateDirection(Vector2 direction) => _direction = direction;   //more control over angles
-    public void ReflectDirection(Vector2 direction) => _direction *= direction; //simple collision
 
-    //useful if ball is hittinga wall.
+    //useful if ball is hitting a wall.
     public void flipXDirection() => _direction.x *= -1;
     public void flipYDirection() => _direction.y *= -1;
 

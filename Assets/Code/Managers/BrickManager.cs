@@ -72,7 +72,8 @@ public class BrickManager : MonoBehaviour
     public void decreaseActiveBrickCount()
     {
         _activeBrickCount--;
-        if(_activeBrickCount < 1)
+
+        if(_activeBrickCount < 1 && countActiveBricks() < 1)
         {
             GameManagerEvents.levelComplete?.Invoke();
         }
@@ -84,5 +85,20 @@ public class BrickManager : MonoBehaviour
         int adjustedLevelNum = (level + Settings.instance.startLevel) % levels.Length;
         _layout = BrickLayoutConfig.getLayout(levels[adjustedLevelNum]);
         updateBrickLayout(_layout);
+    }
+
+    //sanity check if the brick count is wrong. This gets checked when _activeBrickCount is zero
+    private int countActiveBricks()
+    {
+        int brickCount = 0;
+        for(int i = 0; i < _bricks.Count; i++)
+        {
+            for(int j = 0; j < _bricks[i].Count; j++)
+            {
+                if (_bricks[i][j].gameObject.activeSelf)
+                    brickCount++;
+            }
+        }
+        return brickCount;
     }
 }

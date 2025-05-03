@@ -15,6 +15,7 @@ public class BrickController : MonoBehaviour, IBrickController
         {
             PowerUpEvents.powerUpSpawn?.Invoke(EPowerUpType.EXTRABALL, transform.position);
         }
+        AudioEvents.brickBreakSound?.Invoke();
         gameObject.SetActive(false);
         BrickEvents.brickHit?.Invoke();
     }

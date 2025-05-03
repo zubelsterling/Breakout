@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
 
     public int startingLevelOffset = 0;
 
+    [Range(0,1f)]
+    public float powerUpChance;
+
     private int roundCount = 0;
 
     private void Awake()
@@ -43,6 +46,7 @@ public class GameManager : MonoBehaviour
         Settings.instance.brickGridWidth = columnCount;
         Settings.instance.brickGridHeight = rowCount;
         Settings.instance.startLevel = startingLevelOffset;
+        Settings.instance.powerUpOdds = powerUpChance;
     }
 
 }
