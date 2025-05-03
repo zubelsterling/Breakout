@@ -1,6 +1,10 @@
 # Breakout
 The game breakout from scratch!
 
+###Controls 
+ - Left/Right Arrow Keys -> move platform
+ - space -> start ball movement if ball is still (ball will start and respawn as non-moving)
+
 ### Approach
  - I want to make a thorough, decoupled design, that can be iterated on easily.
  - There might be places where I use design principles that seem too robust for a simple game, but I would like to show my knowledge.
