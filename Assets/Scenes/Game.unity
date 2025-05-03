@@ -197,10 +197,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d203dc3581a1e40be6d291a33902c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brickParent: {fileID: 2096974016}
+  spawnPoint: {fileID: 2096974016}
   brickGridWidth: 20
-  brickGridHeight: 10
+  brickGridHeight: 8
   brickPrefab: {fileID: 7401991579853807925, guid: 4da0a4ef77f186344baa435faafdbffc, type: 3}
+  levels:
+  - {fileID: 4900000, guid: 39737fe543019d14c975d56acd153786, type: 3}
+  - {fileID: 4900000, guid: 29bcc34f202410c43bb9f9ad34d2526b, type: 3}
+  - {fileID: 4900000, guid: daf1613c9decec74fabcc9ce42149abf, type: 3}
+  - {fileID: 4900000, guid: ce6e7fa01c0862f478cf9df7f209ebf0, type: 3}
+  - {fileID: 4900000, guid: 1485ec06c26bebb4bb8a45896584c90e, type: 3}
 --- !u!1 &377311888
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,79 +295,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 471ce4f0245d5f94fa85c670850f3566, type: 3}
---- !u!1001 &484447408
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 793267037228169228, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
-      propertyPath: m_Name
-      value: pf_Ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 793267037228169230, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -2413806693520163455, guid: cc21b752c10424f47ba8d6a8b62d472e, type: 3}
-    - target: {fileID: 793267037228169230, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 793267037228169231, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 793267037228169231, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 793267037228169231, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 793267037228169231, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 793267037228169231, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 793267037228169231, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 793267037228169231, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 793267037228169231, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 793267037228169231, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 793267037228169231, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 793267037228169231, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2132712896890287966, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
-      propertyPath: m_AngularDrag
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fb49129a4ceb8084481d68a9b52a3ca9, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +562,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platform: {fileID: 950169917}
+--- !u!1 &1463641418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1463641419}
+  m_Layer: 0
+  m_Name: BallManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1463641419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463641418}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.73442113, y: -0.050318107, z: -0.07819531}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1890204448
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,7 +648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2096974017}
   m_Layer: 0
-  m_Name: BrickGridParent
+  m_Name: BrickGridSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -699,7 +663,7 @@ Transform:
   m_GameObject: {fileID: 2096974016}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.64012414, y: -0.11280608, z: -0.11405997}
+  m_LocalPosition: {x: -10, y: 4.72, z: -0.11405997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -713,9 +677,9 @@ SceneRoots:
   - {fileID: 227450817}
   - {fileID: 1890204450}
   - {fileID: 1176909038}
+  - {fileID: 1463641419}
   - {fileID: 1074718879}
   - {fileID: 479758781}
-  - {fileID: 484447408}
   - {fileID: 377311889}
   - {fileID: 519420032}
   - {fileID: 721241899}

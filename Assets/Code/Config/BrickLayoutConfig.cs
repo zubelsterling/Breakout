@@ -2,27 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrickLayoutConfig : MonoBehaviour
+public class BrickLayoutConfig 
 {
-    public TextAsset[] configFiles;
-    private TextAsset currentConfig;
 
-    private void Awake()
-    {
-        //subscribe to load level
-    }
-
-    public List<List<string>> getLayout(int level)
+    public static List<List<string>> getLayout(TextAsset config)
     {
         List<List<string>> result = new List<List<string>>();
 
-        int clampedLevel = level < configFiles.Length ? level : configFiles.Length - 1;
-
-        currentConfig = configFiles[level];// TODO clamp this value to prevent null reference
-
         result.Add(new List<string>());
 
-        foreach(char c in currentConfig.text)
+        foreach(char c in config.text)
         {
             if(c == '\n')
             {

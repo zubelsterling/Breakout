@@ -21,7 +21,14 @@ public class BrickManager : MonoBehaviour
     public int brickGridHeight;
     public GameObject brickPrefab;
 
-    // Start is called before the first frame update
+    public TextAsset[] levels;
+
+
+    private void Awake()
+    {
+        GameEvents.loadLevel += loadLevel;
+    }
+
     void Start()
     {
         _bricks = BrickSpawner.spawnBricks(brickGridHeight, brickGridWidth, brickPrefab, spawnPoint.transform.position);
@@ -31,11 +38,17 @@ public class BrickManager : MonoBehaviour
     public void updateBrickLayout(List<List<string>> layout)
     {
         _activeBrickCount = 0;
-        for (int i = 0; i < layout.Count; i++)
+
+        //use whichever width/height that is smallest
+        int width = layout.Count < _bricks.Count ? layout.Count : _bricks.Count;
+        int height = layout[0].Count < _bricks[0].Count ? layout[0].Count : _bricks[0].Count;
+
+        for (int i = 0; i < _bricks.Count; i++)
         {
-            for(int j = 0; j < layout[i].Count; j++)
+            for(int j = 0; j < _bricks[i].Count; j++)
             {
-                if (shouldActiveateBrick(layout[i][j]) && _bricks[i][j] != null)
+
+                if (shouldActiveateBrick(layout[i][j]))
                 {
                     _activeBrickCount++;
                     _bricks[i][j].SetActive(true);
@@ -56,5 +69,15 @@ public class BrickManager : MonoBehaviour
     public void decreaseActiveBrickCount()
     {
         _activeBrickCount--;
+        if(_activeBrickCount < 1)
+        {
+            GameEvents.levelComplete?.Invoke();
+        }
+    }
+
+    private void loadLevel(int level)
+    {
+        _layout = BrickLayoutConfig.getLayout(levels[level]);
+        updateBrickLayout(_layout);
     }
 }

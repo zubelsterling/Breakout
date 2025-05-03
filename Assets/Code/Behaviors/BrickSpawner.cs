@@ -12,16 +12,16 @@ using UnityEngine;
 public class BrickSpawner
 {
     //only run once, don't destroy bricks since enable/disable is way cheaper
-    public static  List<List<GameObject>> spawnBricks(int height, int width, GameObject brick, Vector2 startLoc)
+    public static  List<List<GameObject>> spawnBricks(int height, int width, GameObject brick, Vector3 startLoc)
     {
         List<List<GameObject>> resultRefs = new List<List<GameObject>>();
-        Vector3 location = new Vector3(0, 0, 0);
+        Vector3 location = startLoc;
         GameObject currentBrick;
 
         for(int i = 0; i < height; i++)
         {
-            location.y += brick.GetComponent<Renderer>().bounds.size.y; ;
-            location.x = 0;
+            location.y -= brick.GetComponent<Renderer>().bounds.size.y; ;
+            location.x = startLoc.x - brick.GetComponent<Renderer>().bounds.size.x/2;
             resultRefs.Add(new List<GameObject>());
             for(int j = 0; j < width; j++)
             {

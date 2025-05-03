@@ -6,7 +6,7 @@ using System;
 
 public class BallCollisionHandler : MonoBehaviour
 {
-    private event Action onHit;
+    //private event Action onHit;
 
 
     public bool checkforCollision(Vector2 newLoc)
