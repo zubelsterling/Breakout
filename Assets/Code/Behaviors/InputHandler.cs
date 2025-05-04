@@ -43,10 +43,8 @@ public class InputHandler : Singleton<InputHandler>
         //fix this later. Lets just get this working
         //if (_action.WasPressedThisFrame())
         //{
-        //    Debug.Log("Is this working");
         //    OnArrowKeysTrigger?.Invoke();
         //}
-        //Debug.Log(_action.ReadValue<float>());
 
         //direction = _action.ReadValue<float>();
     }
